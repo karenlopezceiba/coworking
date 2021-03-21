@@ -17,4 +17,6 @@ public class ComandoUsuario{
     private String nombre;
     private String clave;
     private LocalDateTime fecha;
+    
+    
 }
