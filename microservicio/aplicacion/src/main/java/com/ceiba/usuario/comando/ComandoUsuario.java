@@ -18,5 +18,4 @@ public class ComandoUsuario{
     private String clave;
     private LocalDateTime fecha;
     
-    
 }

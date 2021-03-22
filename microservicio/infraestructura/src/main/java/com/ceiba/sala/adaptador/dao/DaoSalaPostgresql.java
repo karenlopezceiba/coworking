@@ -21,8 +21,6 @@ public class DaoSalaPostgresql implements DaoSala{
 		this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
 	}
 
-
-
 	@Override
 	public List<DtoSala> listar() {
 		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListar, new MapeoSala());
