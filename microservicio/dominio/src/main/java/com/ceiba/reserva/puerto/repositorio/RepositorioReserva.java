@@ -25,8 +25,8 @@ public interface RepositorioReserva {
     void eliminar(Long id);
     
     /**
-     * Permite validar si existe una reserva con la identificacion de la persona
-     * @param identificacionPersona
+     * Permite validar si existe una reserva 
+     * @param id
      * @return si existe o no
      */
     boolean existe(Long id);

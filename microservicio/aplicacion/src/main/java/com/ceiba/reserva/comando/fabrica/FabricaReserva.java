@@ -13,6 +13,7 @@ public class FabricaReserva {
 				comandoReserva.getIdentificacionPersona(),
 				comandoReserva.getFechaReserva(),
 				comandoReserva.getValorAPagar(),
+				comandoReserva.isEstado(),
 				comandoReserva.getSalaId());
 	}
 	
