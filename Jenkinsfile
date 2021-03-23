@@ -18,7 +18,19 @@ pipeline {
     stage('Checkout') {
       steps{
         echo "------------>Checkout<------------"
-      }
+	 checkout([
+		$class: 'GitSCM',
+		branches: [[name: '*/main']],
+		doGenerateSubmoduleConfigurations: false,
+		extensions: [],
+		gitTool: 'Default',
+		submoduleCfg: [],
+		userRemoteConfigs: [[
+		credentialsId: 'Github_karenLopez',
+		url:'https://github.com/karenlopezceiba/coworking.git'
+		]]
+		])     
+      	}
     }
 	
     stage('clean') {
@@ -48,7 +60,7 @@ pipeline {
 	  steps{
 	  echo "------------>Build<------------"
 	  sh 'chmod +x ./microservicio/gradlew'
-          sh './microservicio/gradlew --b ./microservicio/build.gradle build'
+          sh 'gradle --b ./microservicio/gradlew build'
   	}
     }
   }
