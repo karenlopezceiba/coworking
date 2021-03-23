@@ -4,26 +4,35 @@ pipeline {
     label 'Slave_Induccion'
   }
 
-  //Opciones especÃ­ficas de Pipeline dentro del Pipeline
   options {
     	buildDiscarder(logRotator(numToKeepStr: '3'))
  	disableConcurrentBuilds()
   }
 
-  //Una secciÃ³n que define las herramientas â€œpreinstaladasâ€� en Jenkins
   tools {
-    jdk 'JDK8_Centos' //Preinstalada en la ConfiguraciÃ³n del Master
-    gradle 'Gradle5.6_Centos' //Preinstalada en la ConfiguraciÃ³n del Master
+    jdk 'JDK8_Centos' 
+    gradle 'Gradle5.6_Centos'
   }
 
-  //AquÃ­ comienzan los â€œitemsâ€� del Pipeline
   stages{
     stage('Checkout') {
       steps{
         echo "------------>Checkout<------------"
-      }
+	 checkout([
+		$class: 'GitSCM',
+		branches: [[name: '*/main']],
+		doGenerateSubmoduleConfigurations: false,
+		extensions: [],
+		gitTool: 'Default',
+		submoduleCfg: [],
+		userRemoteConfigs: [[
+		credentialsId: 'Github_karenLopez',
+		url:'https://github.com/karenlopezceiba/coworking.git'
+		]]
+		])     
+      	}
     }
-    
+	
     stage('clean') {
       steps{
         echo "------------>Clean<------------"
@@ -34,26 +43,27 @@ pipeline {
     stage('Compile & Unit Tests') {
       steps{
         echo "------------>Unit Tests<------------"
+	sh 'gradle --b ./microservicio/build.gradle compileJava'
         sh 'gradle --b ./microservicio/build.gradle test'
       }
     }
 
     stage('Static Code Analysis') {
       steps{
-        echo '------------>AnÃ¡lisis de cÃ³digo estÃ¡tico<------------'
-        withSonarQubeEnv('Sonar') {
-sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
-        }
+        echo '------------>Análisis de código estático<------------'
+          withSonarQubeEnv('Sonar') {
+		sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
+	  }
       }
     }
 
     stage('Build') {
 	  steps{
 	  echo "------------>Build<------------"
-	  //Construir sin tarea test que se ejecutÃ³ previamente
-	  sh 'gradle --b ./microservicio/build.gradle build -x test'
+          sh 'gradle build -x test'
+  	}
+    }
   }
-	}
 
   post {
     always {
@@ -61,12 +71,11 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
     }
     success {
       echo 'This will run only if successful'
-      #junit 'build/test-results/test/*.xml'
     }
     failure {
 	  echo 'This will run only if failed'
 	  mail (to: 'karen.lopez@ceiba.com.co',subject: "Failed Pipeline:${currentBuild.fullDisplayName}",body: "Something is wrong with ${env.BUILD_URL}")
-	  }
+	}
     unstable {
       echo 'This will run only if the run was marked as unstable'
     }
