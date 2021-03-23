@@ -10,8 +10,8 @@ pipeline {
   }
 
   tools {
-    jdk 'JDK8_Centos' //Preinstalada en la ConfiguraciÃ³n del Master
-    gradle 'Gradle5.6_Centos' //Preinstalada en la ConfiguraciÃ³n del Master
+    jdk 'JDK8_Centos' 
+    gradle 'Gradle5.6_Centos'
   }
 
   stages{
@@ -43,6 +43,7 @@ pipeline {
     stage('Compile & Unit Tests') {
       steps{
         echo "------------>Unit Tests<------------"
+	sh 'gradle --b ./build.gradle compileJava'
         sh 'gradle --b ./microservicio/build.gradle test'
       }
     }
@@ -51,16 +52,15 @@ pipeline {
       steps{
         echo '------------>Análisis de código estático<------------'
           withSonarQubeEnv('Sonar') {
-          sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
-        }
+		sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
+	  }
       }
     }
 
     stage('Build') {
 	  steps{
 	  echo "------------>Build<------------"
-	  sh 'chmod +x ./microservicio/gradlew'
-          sh 'gradle --b ./microservicio/gradlew build'
+          sh 'gradle build -x test'
   	}
     }
   }
