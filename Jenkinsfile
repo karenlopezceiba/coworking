@@ -44,7 +44,7 @@ pipeline {
       steps{
         echo "------------>Unit Tests<------------"
 	sh 'gradle --b ./microservicio/build.gradle compileJava'
-        sh 'gradle --b ./microservicio/build.gradle test'
+        
       }
     }
 
