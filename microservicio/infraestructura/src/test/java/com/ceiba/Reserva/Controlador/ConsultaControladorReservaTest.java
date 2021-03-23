@@ -33,5 +33,5 @@ public class ConsultaControladorReservaTest {
                 .andExpect(status().isOk())
         		.andExpect(jsonPath("$[0].identificacionPersona", is(identificacionPersona)));
     }
-
+	
 }
