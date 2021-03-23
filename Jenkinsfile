@@ -60,7 +60,8 @@ pipeline {
     stage('Build') {
 	  steps{
 	  echo "------------>Build<------------"
-          sh 'gradle build -x test'
+          sh 'chmod +x ./microservicio/gradlew'
+          sh './microservicio/gradlew --b ./microservicio/build.gradle build -x test'
   	}
     }
   }
