@@ -26,12 +26,4 @@ CREATE TABLE reserva (
       FOREIGN KEY(sala_id) 
 	  REFERENCES sala(id)
 );
-
-INSERT INTO public.sala(
-	id, total_puestos, puestos_disponibles)
-	VALUES (1, 24, 24);
-
-INSERT INTO public.sala(
-	id, total_puestos, puestos_disponibles)
-	VALUES (2, 14, 4);
 	

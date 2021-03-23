@@ -1,6 +1,5 @@
 package com.ceiba.reserva.servicio;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
