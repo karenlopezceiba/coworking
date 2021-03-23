@@ -4,26 +4,23 @@ pipeline {
     label 'Slave_Induccion'
   }
 
-  //Opciones especÃ­ficas de Pipeline dentro del Pipeline
   options {
     	buildDiscarder(logRotator(numToKeepStr: '3'))
  	disableConcurrentBuilds()
   }
 
-  //Una secciÃ³n que define las herramientas â€œpreinstaladasâ€� en Jenkins
   tools {
     jdk 'JDK8_Centos' //Preinstalada en la ConfiguraciÃ³n del Master
     gradle 'Gradle5.6_Centos' //Preinstalada en la ConfiguraciÃ³n del Master
   }
 
-  //AquÃ­ comienzan los â€œitemsâ€� del Pipeline
   stages{
     stage('Checkout') {
       steps{
         echo "------------>Checkout<------------"
       }
     }
-    
+	
     stage('clean') {
       steps{
         echo "------------>Clean<------------"
@@ -52,8 +49,9 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
 	  echo "------------>Build<------------"
 	  //Construir sin tarea test que se ejecutÃ³ previamente
 	  sh 'gradle --b ./microservicio/build.gradle build -x test'
+  	}
+    }
   }
-	}
 
   post {
     always {
@@ -65,7 +63,7 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
     failure {
 	  echo 'This will run only if failed'
 	  mail (to: 'karen.lopez@ceiba.com.co',subject: "Failed Pipeline:${currentBuild.fullDisplayName}",body: "Something is wrong with ${env.BUILD_URL}")
-	  }
+	}
     unstable {
       echo 'This will run only if the run was marked as unstable'
     }
