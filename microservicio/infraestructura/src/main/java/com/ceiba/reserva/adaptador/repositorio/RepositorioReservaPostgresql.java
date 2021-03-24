@@ -1,5 +1,7 @@
 package com.ceiba.reserva.adaptador.repositorio;
 
+import java.time.LocalDateTime;
+
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
@@ -25,8 +27,8 @@ public class RepositorioReservaPostgresql implements RepositorioReserva{
     @SqlStatement(namespace="reserva", value="existe")
     private static String sqlExiste;
     
-    @SqlStatement(namespace="reserva", value="existePuesto")
-    private static String sqlExistePuesto;
+    @SqlStatement(namespace="reserva", value="concurrencia")
+    private static String sqlConcurrencia;
     
 	public RepositorioReservaPostgresql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
 		this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -62,9 +64,10 @@ public class RepositorioReservaPostgresql implements RepositorioReserva{
 	}
 
 	@Override
-	public boolean existePuesto() {
+	public Long concurrencia(LocalDateTime fecha) {
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
-		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistePuesto,paramSource, Boolean.class);
+		paramSource.addValue("fecha", fecha);
+		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlConcurrencia,paramSource, Long.class);
 	}
 
 }

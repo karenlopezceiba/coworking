@@ -21,8 +21,13 @@ public class ReservaTestDataBuilder {
 		estado = true;
 	}
 	
-	public ReservaTestDataBuilder conId(Long id) {
-        this.id = id;
+	public ReservaTestDataBuilder conFecha(LocalDateTime fecha) {
+        this.fechaReserva = fecha;
+        return this;
+    }
+	
+	public ReservaTestDataBuilder conValorPago(BigDecimal valorAPagar) {
+        this.valorAPagar = valorAPagar;
         return this;
     }
 	

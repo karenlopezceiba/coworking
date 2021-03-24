@@ -1,8 +1,9 @@
 package com.ceiba.reserva.modelo.entidad;
 
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
-
+import static java.time.temporal.ChronoUnit.DAYS;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import lombok.Getter;
@@ -33,6 +34,17 @@ public class Reserva {
 		this.salaId = salaId;
 	}
 	
-	
+	public boolean fechaValida(){
+		if(fechaReserva.toLocalDate().getDayOfWeek().getValue() == 7) return false;
+		if(fechaReserva.isBefore(LocalDateTime.now())) return false;
+		return true;
+	}
+
+	public void descuentoPorFecha() {
+		if(DAYS.between( LocalDate.now(), fechaReserva.toLocalDate()) >= 7L){
+			valorAPagar = valorAPagar.subtract(valorAPagar.divide(BigDecimal.TEN));
+		}
+		
+	}
 
 }
