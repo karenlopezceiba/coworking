@@ -35,7 +35,7 @@ public class ComandoControladorReservaTest {
     private ObjectMapper objectMapper;
 	
 	@Test
-    public void Crear() throws Exception{
+    public void crear() throws Exception{
     	// arrange
     	ComandoReserva reserva = unaReservaBuilder().conFecha(LocalDate.now().plusDays(1L))
     												.conIdentificacionPersona("1234")
@@ -51,7 +51,7 @@ public class ComandoControladorReservaTest {
     }
 	
 	 	@Test
-	    public void Eliminar() throws Exception{
+	    public void eliminar() throws Exception{
 	    	// arrange
 	    	Long id = 1L;
 	    	

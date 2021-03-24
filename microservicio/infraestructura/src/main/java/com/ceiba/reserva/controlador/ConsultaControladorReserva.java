@@ -24,10 +24,10 @@ public class ConsultaControladorReserva {
 		this.manejadorListarReservas = manejadorListarReservas;
 	}
 	
-	@GetMapping(value="/{id}")
+	@GetMapping(value="/{idPersona}")
     @ApiOperation("Listar reservas")
-    public List<DtoReserva> listar(@PathVariable String id) {
-        return this.manejadorListarReservas.ejecutar(id);
+    public List<DtoReserva> listar(@PathVariable String idPersona) {
+        return this.manejadorListarReservas.ejecutar(idPersona);
     }
 	
 }
