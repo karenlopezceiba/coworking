@@ -1,2 +1,2 @@
-select id,total_puestos,puestos_disponibles
+select id,total_puestos
 from sala

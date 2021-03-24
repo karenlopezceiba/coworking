@@ -1,3 +1,3 @@
-UPDATE public.reserva
+UPDATE reserva
 	SET estado = 'false'
 	WHERE id = :id;

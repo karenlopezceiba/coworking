@@ -9,5 +9,4 @@ import lombok.Getter;
 public class DtoSala {
 	 private Long id;
 	 private Integer totalPuestosTrabajo; 
-	 private Integer puestosDisponibles;
 }

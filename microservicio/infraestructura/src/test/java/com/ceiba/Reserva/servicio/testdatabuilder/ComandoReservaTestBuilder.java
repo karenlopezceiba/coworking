@@ -12,7 +12,6 @@ public class ComandoReservaTestBuilder {
 	private LocalDate fechaReserva;
 	private BigDecimal valorAPagar;
 	private boolean estado;
-	private Long salaId;	
 	
 	public ComandoReservaTestBuilder() {
 		identificacionPersona = "12345";
@@ -47,7 +46,7 @@ public class ComandoReservaTestBuilder {
     }
 	
 	public ComandoReserva build(){
-		return new ComandoReserva(id, identificacionPersona,LocalDateTime.parse(fechaReserva.toString() + "T00:00:00"), estado, valorAPagar, salaId);
+		return new ComandoReserva(id, identificacionPersona,LocalDateTime.parse(fechaReserva.toString() + "T00:00:00"), estado, valorAPagar);
 	}
 	
 	public static ComandoReservaTestBuilder unaReservaBuilder(){

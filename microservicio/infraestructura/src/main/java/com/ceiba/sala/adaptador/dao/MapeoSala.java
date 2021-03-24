@@ -14,10 +14,8 @@ public class MapeoSala implements RowMapper<DtoSala>, MapperResult {
 	@Override
 	public DtoSala mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 		Long id = resultSet.getLong("id");
-		Integer totalPuestosTrabajo = resultSet.getInt("total_puestos");
-		Integer puestosDisponibles = resultSet.getInt("puestos_disponibles");
-		
-		return new DtoSala(id, totalPuestosTrabajo, puestosDisponibles);
+		Integer totalPuestosTrabajo = resultSet.getInt("total_puestos");		
+		return new DtoSala(id, totalPuestosTrabajo);
 	}
 
 }

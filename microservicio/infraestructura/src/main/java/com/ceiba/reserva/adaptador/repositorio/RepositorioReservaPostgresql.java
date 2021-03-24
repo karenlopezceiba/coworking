@@ -21,8 +21,8 @@ public class RepositorioReservaPostgresql implements RepositorioReserva{
     @SqlStatement(namespace="reserva", value="eliminar")
     private static String sqlEliminar;
     
-    @SqlStatement(namespace="reserva", value="asignarSala")
-    private static String sqlAsignarSala;
+    @SqlStatement(namespace="reserva", value="aforo")
+    private static String sqlAforo;
     
     @SqlStatement(namespace="reserva", value="existe")
     private static String sqlExiste;
@@ -40,11 +40,9 @@ public class RepositorioReservaPostgresql implements RepositorioReserva{
 	}
 
 	@Override
-	public void asignarSala(Long idReserva) {
-		MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("id", idReserva);
-        
-		this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlAsignarSala,paramSource, Long.class);
+	public Long aforo() {
+		MapSqlParameterSource paramSource = new MapSqlParameterSource();        
+		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlAforo,paramSource, Long.class);
 	}
 
 	@Override

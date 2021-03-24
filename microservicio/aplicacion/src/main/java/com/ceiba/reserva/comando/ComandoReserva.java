@@ -19,5 +19,4 @@ public class ComandoReserva {
 	private LocalDateTime fechaReserva;
 	private boolean estado;
 	private BigDecimal valorAPagar;
-	private Long salaId;
 }

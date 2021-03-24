@@ -10,8 +10,7 @@ public class FabricaSala {
 	public Sala crear(ComandoSala comandoSala){
 		return new Sala(
 				comandoSala.getId(),
-				comandoSala.getTotalPuestosTrabajo(),
-				comandoSala.getPuestosDisponibles()
+				comandoSala.getTotalPuestosTrabajo()
 				);
 	}
 

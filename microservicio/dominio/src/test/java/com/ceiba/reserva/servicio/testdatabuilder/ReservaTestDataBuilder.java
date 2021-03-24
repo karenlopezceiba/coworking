@@ -12,7 +12,6 @@ public class ReservaTestDataBuilder {
 	private LocalDateTime fechaReserva;
 	private BigDecimal valorAPagar;
 	private boolean estado;
-	private Long salaId;	
 	
 	public ReservaTestDataBuilder() {
 		identificacionPersona = "12345";
@@ -32,7 +31,7 @@ public class ReservaTestDataBuilder {
     }
 	
 	public Reserva build(){
-		return new Reserva(id, identificacionPersona, fechaReserva, valorAPagar, estado, salaId);
+		return new Reserva(id, identificacionPersona, fechaReserva, valorAPagar, estado);
 	}
 
 }

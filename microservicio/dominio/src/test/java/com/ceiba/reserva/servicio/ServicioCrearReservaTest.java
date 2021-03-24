@@ -14,7 +14,7 @@ import com.ceiba.reserva.servicio.testdatabuilder.ReservaTestDataBuilder;
 
 public class ServicioCrearReservaTest {
 	
-	private static final Long MAX_VALUE_AFORO =  1000000000L;
+	private static final Long MAX_VALUE_CONCURRENCIA =  1000000000L;
 	
 	@Test
     public void validarReservaExistenciaPreviaTest() {
@@ -58,7 +58,7 @@ public class ServicioCrearReservaTest {
 		LocalDateTime fecha = LocalDateTime.now().plusWeeks(1L);
         Reserva reserva = new ReservaTestDataBuilder().conFecha(fecha).build();
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
-        Mockito.when(repositorioReserva.concurrencia(fecha)).thenReturn(MAX_VALUE_AFORO);
+        Mockito.when(repositorioReserva.concurrencia(fecha)).thenReturn(MAX_VALUE_CONCURRENCIA);
         Mockito.when(repositorioReserva.existe(Mockito.anyLong())).thenReturn(false);
         ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva);
      // act - assert
@@ -73,6 +73,7 @@ public class ServicioCrearReservaTest {
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
         Mockito.when(repositorioReserva.concurrencia(fecha)).thenReturn(1L);
         Mockito.when(repositorioReserva.existe(Mockito.anyLong())).thenReturn(false);
+        Mockito.when(repositorioReserva.aforo()).thenReturn(2L);
         ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva);
         //act - assert
         Assert.assertNotNull("Concurrencia mas alla del limite", servicioCrearReserva.ejecutar(reserva));

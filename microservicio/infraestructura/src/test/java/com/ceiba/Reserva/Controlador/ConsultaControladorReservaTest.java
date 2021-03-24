@@ -26,7 +26,7 @@ public class ConsultaControladorReservaTest {
 	@Test
     public void listar() throws Exception {
         // arrange
-		String identificacionPersona = "1234";
+		String identificacionPersona = "12345";
         // act - assert
         mocMvc.perform(get("/reservas/{identificacionPersona}", identificacionPersona)
                 .contentType(MediaType.APPLICATION_JSON))

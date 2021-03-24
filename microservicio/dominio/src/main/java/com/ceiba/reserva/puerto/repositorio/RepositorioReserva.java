@@ -18,7 +18,7 @@ public interface RepositorioReserva {
      * @param idReserva
      * @return el id de la sala asignada
      */
-    void asignarSala(Long idReserva);
+    Long aforo();
     
     /**
      * Permite eliminar una reserva

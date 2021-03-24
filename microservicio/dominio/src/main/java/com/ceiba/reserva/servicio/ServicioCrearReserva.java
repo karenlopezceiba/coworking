@@ -40,7 +40,8 @@ public class ServicioCrearReserva {
 	
 	 private void validarPuestosDisponibles(Reserva reserva){
 		 Long concurrencia = this.repositorioReserva.concurrencia(reserva.getFechaReserva());
-		 if(concurrencia > 50) {
+		 Long aforo = this.repositorioReserva.aforo();
+		 if(aforo - concurrencia < 1) {
 	            throw new ExcepcionInexistencia(NO_HAY_PUESTOS_DISPONIBLES);
 	        }
 

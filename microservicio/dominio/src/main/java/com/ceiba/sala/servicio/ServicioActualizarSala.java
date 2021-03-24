@@ -14,9 +14,10 @@ public class ServicioActualizarSala {
 		this.repositorioSala = repositorioSala;
 	}
 	
-	public void ejecutar(Sala sala){	 
+	public Long ejecutar(Sala sala){	 
 		validarExistenciaPrevia(sala);
         this.repositorioSala.actualizar(sala);
+        return sala.getId();
 	}
 
 	private void validarExistenciaPrevia(Sala sala) {

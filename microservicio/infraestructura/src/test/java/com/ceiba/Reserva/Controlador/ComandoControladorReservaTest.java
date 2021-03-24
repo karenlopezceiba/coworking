@@ -13,7 +13,7 @@ import com.ceiba.ApplicationMock;
 import com.ceiba.reserva.comando.ComandoReserva;
 import com.ceiba.reserva.controlador.ComandoControladorReserva;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static com.ceiba.Reserva.servicio.testdatabuilder.ComandoReservaTestBuilder.unaReservaBuilder;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
@@ -36,7 +36,7 @@ public class ComandoControladorReservaTest {
 	
 	@Test
     public void Crear() throws Exception{
-    	// arrang
+    	// arrange
     	ComandoReserva reserva = unaReservaBuilder().conFecha(LocalDate.now().plusDays(1L))
     												.conIdentificacionPersona("1234")
     												.conIsEstado(true)
@@ -47,7 +47,19 @@ public class ComandoControladorReservaTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(reserva)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 2}"));
+                .andExpect(content().json("{'valor': 3}"));
     }
+	
+	 	@Test
+	    public void Eliminar() throws Exception{
+	    	// arrange
+	    	Long id = 1L;
+	    	
+	    	// act - assert
+	    	mocMvc.perform(delete("/reservas/{id}",id)
+	                .contentType(MediaType.APPLICATION_JSON)
+	                .accept(MediaType.APPLICATION_JSON))
+	                .andExpect(status().isOk());
+	    }
 	
 }

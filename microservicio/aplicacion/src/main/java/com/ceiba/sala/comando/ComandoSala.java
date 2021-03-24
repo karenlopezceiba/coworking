@@ -12,5 +12,4 @@ import lombok.Setter;
 public class ComandoSala {
 	private Long id;
 	private Integer totalPuestosTrabajo; 
-	private Integer puestosDisponibles;
 }
