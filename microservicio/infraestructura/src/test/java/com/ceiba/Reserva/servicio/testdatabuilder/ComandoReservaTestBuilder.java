@@ -2,7 +2,6 @@ package com.ceiba.Reserva.servicio.testdatabuilder;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import com.ceiba.reserva.comando.ComandoReserva;
 
 public class ComandoReservaTestBuilder {
@@ -46,7 +45,7 @@ public class ComandoReservaTestBuilder {
     }
 	
 	public ComandoReserva build(){
-		return new ComandoReserva(id, identificacionPersona,LocalDateTime.parse(fechaReserva.toString() + "T00:00:00"), estado, valorAPagar);
+		return new ComandoReserva(id, identificacionPersona,fechaReserva, estado, valorAPagar);
 	}
 	
 	public static ComandoReservaTestBuilder unaReservaBuilder(){

@@ -2,8 +2,7 @@ package com.ceiba.reserva.modelo;
 
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-
+import java.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,7 +15,7 @@ public class ReservaTest {
 	@Test
     public void validarFechaDomingo() {
         // arrange
-		LocalDateTime fecha = LocalDateTime.now().plusDays(7 - LocalDateTime.now().getDayOfWeek().getValue());
+		LocalDate fecha = LocalDate.now().plusDays(7 - LocalDate.now().getDayOfWeek().getValue());
 		Reserva reserva = new ReservaTestDataBuilder().conFecha(fecha).build();
         // act 
 		// assert
@@ -26,7 +25,7 @@ public class ReservaTest {
 	@Test
     public void validarFechaAnterior() {
         // arrange
-		LocalDateTime fecha = LocalDateTime.now().minusMonths(1L);
+		LocalDate fecha = LocalDate.now().minusMonths(1L);
 		Reserva reserva = new ReservaTestDataBuilder().conFecha(fecha).build();
         // act 
 		// assert
@@ -36,7 +35,7 @@ public class ReservaTest {
 	@Test
     public void validarFechaCorrecta() {
         // arrange
-		LocalDateTime fecha = LocalDateTime.now().plusWeeks(1L);
+		LocalDate fecha = LocalDate.now().plusWeeks(1L);
 		Reserva reserva = new ReservaTestDataBuilder().conFecha(fecha).build();
         // act 
 		// assert
@@ -46,7 +45,7 @@ public class ReservaTest {
 	@Test
     public void validarDescuentoRealizado() {
         // arrange
-		LocalDateTime fecha = LocalDateTime.now().plusWeeks(1L);
+		LocalDate fecha = LocalDate.now().plusWeeks(1L);
 		BigDecimal valorAPagar = new BigDecimal("10000");
 		Reserva reserva = new ReservaTestDataBuilder().conFecha(fecha).conValorPago(valorAPagar).build();
         // act 
@@ -58,7 +57,7 @@ public class ReservaTest {
 	@Test
     public void validarDescuentoNoRealizado() {
         // arrange
-		LocalDateTime fecha = LocalDateTime.now().plusDays(4L);
+		LocalDate fecha = LocalDate.now().plusDays(4L);
 		BigDecimal valorAPagar = new BigDecimal("10000");
 		Reserva reserva = new ReservaTestDataBuilder().conFecha(fecha).conValorPago(valorAPagar).build();
         // act 

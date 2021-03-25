@@ -34,4 +34,14 @@ public class ConsultaControladorReservaTest {
         		.andExpect(jsonPath("$[0].identificacionPersona", is(identificacionPersona)));
     }
 	
+	@Test
+    public void listarReservaInexistente() throws Exception {
+        // arrange
+		String identificacionPersona = "1111111";
+        // act - assert
+        mocMvc.perform(get("/reservas/{identificacionPersona}", identificacionPersona)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+	
 }

@@ -1,8 +1,7 @@
 package com.ceiba.reserva.modelo.dto;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -12,7 +11,7 @@ import lombok.Getter;
 public class DtoReserva {
 	private Long id;
 	private String identificacionPersona;
-	private LocalDateTime fechaReserva;
+	private LocalDate fechaReserva;
 	private boolean estado;
 	private BigDecimal valorAPagar;
 	

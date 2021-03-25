@@ -1,7 +1,6 @@
 package com.ceiba.reserva.puerto.repositorio;
 
-import java.time.LocalDateTime;
-
+import java.time.LocalDate;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 
 public interface RepositorioReserva {
@@ -37,7 +36,7 @@ public interface RepositorioReserva {
      * Permite validar si hay puestos disponibles para reservar
      * @return si existe o no
      */
-    Long concurrencia(LocalDateTime fecha);
+    Long concurrencia(LocalDate fecha);
 
 
 }

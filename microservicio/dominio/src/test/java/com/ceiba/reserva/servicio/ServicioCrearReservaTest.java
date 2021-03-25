@@ -1,6 +1,6 @@
 package com.ceiba.reserva.servicio;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -30,7 +30,7 @@ public class ServicioCrearReservaTest {
 	@Test(expected = ExcepcionValorInvalido.class)
     public void validarNoHacerReservaDomingosTest() {
         // arrange
-		LocalDateTime fecha = LocalDateTime.now().plusDays(7 - LocalDateTime.now().getDayOfWeek().getValue()); 
+		LocalDate fecha = LocalDate.now().plusDays(7 - LocalDate.now().getDayOfWeek().getValue()); 
         Reserva reserva = new ReservaTestDataBuilder().conFecha(fecha).build();
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
         Mockito.when(repositorioReserva.existe(Mockito.anyLong())).thenReturn(false);
@@ -43,7 +43,7 @@ public class ServicioCrearReservaTest {
 	@Test(expected = ExcepcionValorInvalido.class)
     public void validarNoHacerReservasFechasAnterioresTest() {
         // arrange
-		LocalDateTime fecha = LocalDateTime.now().minusMonths(1L); 
+		LocalDate fecha = LocalDate.now().minusMonths(1L); 
         Reserva reserva = new ReservaTestDataBuilder().conFecha(fecha).build();
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
         Mockito.when(repositorioReserva.existe(Mockito.anyLong())).thenReturn(false);
@@ -55,7 +55,7 @@ public class ServicioCrearReservaTest {
 	@Test(expected = ExcepcionInexistencia.class)
     public void validarMaximaConcurrencia() {
         // arrange
-		LocalDateTime fecha = LocalDateTime.now().plusWeeks(1L);
+		LocalDate fecha = LocalDate.now().plusWeeks(1L);
         Reserva reserva = new ReservaTestDataBuilder().conFecha(fecha).build();
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
         Mockito.when(repositorioReserva.concurrencia(fecha)).thenReturn(MAX_VALUE_CONCURRENCIA);
@@ -68,7 +68,7 @@ public class ServicioCrearReservaTest {
 	@Test
     public void validarConcurrencia() {
         // arrange
-		LocalDateTime fecha = LocalDateTime.now().plusWeeks(1L);
+		LocalDate fecha = LocalDate.now().plusWeeks(1L);
         Reserva reserva = new ReservaTestDataBuilder().conFecha(fecha).build();
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
         Mockito.when(repositorioReserva.concurrencia(fecha)).thenReturn(1L);

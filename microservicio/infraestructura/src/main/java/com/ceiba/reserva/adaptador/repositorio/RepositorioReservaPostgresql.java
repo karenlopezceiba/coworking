@@ -1,7 +1,6 @@
 package com.ceiba.reserva.adaptador.repositorio;
 
-import java.time.LocalDateTime;
-
+import java.time.LocalDate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
@@ -62,7 +61,7 @@ public class RepositorioReservaPostgresql implements RepositorioReserva{
 	}
 
 	@Override
-	public Long concurrencia(LocalDateTime fecha) {
+	public Long concurrencia(LocalDate fecha) {
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
 		paramSource.addValue("fecha", fecha);
 		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlConcurrencia,paramSource, Long.class);
