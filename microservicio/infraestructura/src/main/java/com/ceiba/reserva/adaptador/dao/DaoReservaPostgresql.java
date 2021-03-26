@@ -32,7 +32,7 @@ public class DaoReservaPostgresql implements DaoReserva{
 		try {
 		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListar, paramSource, new MapeoReserva());
 		}catch (EmptyResultDataAccessException e) {
-			return new ArrayList<DtoReserva>(); 
+			return new ArrayList<>(); 
         }
 	}
 

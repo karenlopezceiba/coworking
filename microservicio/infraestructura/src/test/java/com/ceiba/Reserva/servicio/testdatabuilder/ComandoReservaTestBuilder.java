@@ -16,11 +16,11 @@ public class ComandoReservaTestBuilder {
 	private ComandoPersona persona;
 	
 	public ComandoReservaTestBuilder() {
-		persona = new ComandoPersona("12345", "karen lopez");
+		persona = new ComandoPersona("123451", "karen lopez");
 		fechaReserva = LocalDate.now();
 		valorAPagar = new BigDecimal("10000");
 		estado = true;
-		identificacionPersona = "12345";
+		identificacionPersona = "123451";
 	}
 	
 	public ComandoReservaTestBuilder conId(Long id) {
@@ -49,7 +49,7 @@ public class ComandoReservaTestBuilder {
     }
 	
 	public ComandoReserva build(){
-		return new ComandoReserva(id, persona.getIdentificacion(),fechaReserva, estado, valorAPagar, persona);
+		return new ComandoReserva(id, identificacionPersona,fechaReserva, estado, valorAPagar, persona);
 	}
 	
 	public static ComandoReservaTestBuilder unaReservaBuilder(){

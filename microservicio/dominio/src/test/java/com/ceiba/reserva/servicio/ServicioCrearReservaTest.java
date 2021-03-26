@@ -27,6 +27,21 @@ public class ServicioCrearReservaTest {
         BasePrueba.assertThrows(() -> servicioCrearReserva.ejecutar(reserva), ExcepcionDuplicidad.class,"La reserva ya existe en el sistema");
     }
 	
+	@Test
+    public void validarReservaSinExistenciaPreviaTest() {
+        // arrange
+        LocalDate fecha = LocalDate.now().plusWeeks(1L);
+        Reserva reserva = new ReservaTestDataBuilder().conFecha(fecha).build();
+        RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
+        Mockito.when(repositorioReserva.existe(Mockito.anyLong())).thenReturn(false);
+        Mockito.when(repositorioReserva.crear(Mockito.anyObject())).thenReturn(1L);
+        Mockito.when(repositorioReserva.concurrencia(Mockito.anyObject())).thenReturn(1L);
+        Mockito.when(repositorioReserva.aforo()).thenReturn(2L);
+        ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva);
+        // act - assert
+        Assert.assertNotNull("La reserva no ha podido ser creada", servicioCrearReserva.ejecutar(reserva));
+    }
+	
 	@Test(expected = ExcepcionValorInvalido.class)
     public void validarNoHacerReservaDomingosTest() {
         // arrange
@@ -74,6 +89,7 @@ public class ServicioCrearReservaTest {
         Mockito.when(repositorioReserva.concurrencia(fecha)).thenReturn(1L);
         Mockito.when(repositorioReserva.existe(Mockito.anyLong())).thenReturn(false);
         Mockito.when(repositorioReserva.aforo()).thenReturn(2L);
+        Mockito.when(repositorioReserva.crear(Mockito.anyObject())).thenReturn(1L);
         ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva);
         //act - assert
         Assert.assertNotNull("Concurrencia mas alla del limite", servicioCrearReserva.ejecutar(reserva));
