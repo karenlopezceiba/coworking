@@ -1,6 +1,7 @@
 package com.ceiba.reserva.puerto.repositorio;
 
 import java.time.LocalDate;
+
 import com.ceiba.reserva.modelo.entidad.Reserva;
 
 public interface RepositorioReserva {
@@ -37,6 +38,6 @@ public interface RepositorioReserva {
      * @return si existe o no
      */
     Long concurrencia(LocalDate fecha);
-
+    
 
 }

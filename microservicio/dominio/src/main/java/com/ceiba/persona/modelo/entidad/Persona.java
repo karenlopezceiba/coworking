@@ -7,15 +7,13 @@ import static com.ceiba.dominio.ValidadorArgumento.*;
 public class Persona {
 	private static final String SE_DEBE_INGRESAR_EL_NOMBRE_DE_LA_PERSONA = "Se debe ingresar el nombre de la persona";
 	private static final String SE_DEBE_INGRESAR_EL_NUMERO_DE_IDENTIFICACION = "Se debe ingresar numero de identifacion de la persona";
-	   
-	private Long id;
-	private String nombre;
-	private String identificacion;
 	
-	public Persona(Long id, String nombre, String identificacion) {
+	private String identificacion;
+	private String nombre;
+	
+	public Persona(String identificacion, String nombre) {
 		validarObligatorio(nombre, SE_DEBE_INGRESAR_EL_NOMBRE_DE_LA_PERSONA);
 		validarObligatorio(identificacion, SE_DEBE_INGRESAR_EL_NUMERO_DE_IDENTIFICACION);
-		this.id = id;
 		this.nombre = nombre;
 		this.identificacion = identificacion;
 	}

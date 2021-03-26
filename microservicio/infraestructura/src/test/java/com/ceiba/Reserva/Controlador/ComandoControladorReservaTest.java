@@ -38,7 +38,6 @@ public class ComandoControladorReservaTest {
     public void crear() throws Exception{
     	// arrange
     	ComandoReserva reserva = unaReservaBuilder().conFecha(LocalDate.now().plusDays(1L))
-    												.conIdentificacionPersona("1234")
     												.conIsEstado(true)
     												.conValorPago(new BigDecimal("10000")).build();
     	

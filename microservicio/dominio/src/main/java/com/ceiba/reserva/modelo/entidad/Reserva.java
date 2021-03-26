@@ -5,12 +5,14 @@ import static java.time.temporal.ChronoUnit.DAYS;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import com.ceiba.persona.modelo.entidad.Persona;
+
 import lombok.Getter;
 
 @Getter
 public class Reserva {
 	
-	private static final String SE_DEBE_INGRESAR_IDENTIFICACION_DE_PERSONA = "Se debe ingresar una identificacion sobre la cual hacer la reserva";
+	private static final String SE_DEBE_INGRESAR_INFORMACION_DE_PERSONA = "Se debe ingresar una identificacion y nombre sobre la cual hacer la reserva";
 	private static final String SE_DEBE_INGRESAR_LA_FECHA_DE_RESERVA = "Se debe ingresar la fecha de la reserva";
 	private static final String SE_DEBE_INGRESAR_UN_VALOR_DE_PAGO = "Se debe ingresar el valor de la reserva";
 	private static final int DOMINGO = 7;
@@ -18,20 +20,22 @@ public class Reserva {
 	private static final BigDecimal PORCENTAJE_DE_DESCUENTO = BigDecimal.TEN;
     
 	private Long id;
-	private String identificacionPersona;
 	private LocalDate fechaReserva;
+	private String identificacionPersona;
 	private boolean estado;
 	private BigDecimal valorAPagar;
+	private Persona persona;
 	
-	public Reserva(Long id, String identificacionPersona, LocalDate fechaReserva, BigDecimal valorAPagar, boolean estado) {
-		validarObligatorio(identificacionPersona, SE_DEBE_INGRESAR_IDENTIFICACION_DE_PERSONA);
+	public Reserva(Long id, LocalDate fechaReserva, BigDecimal valorAPagar, boolean estado, String identificacionPersona, Persona persona) {
+		validarObligatorio(persona, SE_DEBE_INGRESAR_INFORMACION_DE_PERSONA);
 		validarObligatorio(fechaReserva, SE_DEBE_INGRESAR_LA_FECHA_DE_RESERVA);
 		validarObligatorio(valorAPagar, SE_DEBE_INGRESAR_UN_VALOR_DE_PAGO);
 		this.id = id;
 		this.estado = estado;
-		this.identificacionPersona = identificacionPersona;
+		this.persona = persona;
 		this.fechaReserva = fechaReserva;
 		this.valorAPagar = valorAPagar;
+		this.identificacionPersona = identificacionPersona;
 	}
 	
 	public boolean fechaValida(){

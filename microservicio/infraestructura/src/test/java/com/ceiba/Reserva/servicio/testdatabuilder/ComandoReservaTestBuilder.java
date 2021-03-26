@@ -2,6 +2,8 @@ package com.ceiba.Reserva.servicio.testdatabuilder;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
+import com.ceiba.persona.comando.ComandoPersona;
 import com.ceiba.reserva.comando.ComandoReserva;
 
 public class ComandoReservaTestBuilder {
@@ -11,12 +13,14 @@ public class ComandoReservaTestBuilder {
 	private LocalDate fechaReserva;
 	private BigDecimal valorAPagar;
 	private boolean estado;
+	private ComandoPersona persona;
 	
 	public ComandoReservaTestBuilder() {
-		identificacionPersona = "12345";
+		persona = new ComandoPersona("12345", "karen lopez");
 		fechaReserva = LocalDate.now();
 		valorAPagar = new BigDecimal("10000");
 		estado = true;
+		identificacionPersona = "12345";
 	}
 	
 	public ComandoReservaTestBuilder conId(Long id) {
@@ -45,7 +49,7 @@ public class ComandoReservaTestBuilder {
     }
 	
 	public ComandoReserva build(){
-		return new ComandoReserva(id, identificacionPersona,fechaReserva, estado, valorAPagar);
+		return new ComandoReserva(id, persona.getIdentificacion(),fechaReserva, estado, valorAPagar, persona);
 	}
 	
 	public static ComandoReservaTestBuilder unaReservaBuilder(){

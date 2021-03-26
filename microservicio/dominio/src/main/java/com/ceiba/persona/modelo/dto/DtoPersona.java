@@ -6,7 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class DtoPersona {
-	private Long id;
-	private String nombre;
 	private String identificacion;
+	private String nombre;
 }
