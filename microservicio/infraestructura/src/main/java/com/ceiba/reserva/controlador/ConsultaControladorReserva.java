@@ -26,7 +26,7 @@ public class ConsultaControladorReserva {
 	
 	@GetMapping(value="/{idPersona}")
     @ApiOperation("Listar reservas")
-    public List<DtoReserva> listar(@PathVariable String idPersona) {
+    public List<DtoReserva> listar(@PathVariable Long idPersona) {
         return this.manejadorListarReservas.ejecutar(idPersona);
     }
 	

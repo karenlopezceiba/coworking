@@ -4,16 +4,16 @@ import com.ceiba.persona.modelo.entidad.Persona;
 
 public class PersonaTestDataBuilder {
 	
-	private String identificacion;
+	private Long id;
 	private String nombre;
 	
 	public PersonaTestDataBuilder() {
-		this.identificacion = "12345";
+		this.id = 12345L;
 		this.nombre = "karen lopez";
 	}
 	
 	public Persona build(){
-		return new Persona(identificacion, nombre);
+		return new Persona(id, nombre);
 	}
 
 }

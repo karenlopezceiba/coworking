@@ -2,7 +2,7 @@ INSERT INTO sala(
 	total_puestos)
 	VALUES (12);
 INSERT INTO persona(
-	identificacion, nombre)
+	id, nombre)
 	VALUES ('1234', 'karen'), ('12345', 'persona de prueba');
 INSERT INTO reserva(
 	id, identificacion_persona, fecha_reserva, valor_pago, estado)

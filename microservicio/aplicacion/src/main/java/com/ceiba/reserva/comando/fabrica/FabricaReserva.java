@@ -14,7 +14,7 @@ public class FabricaReserva {
 				comandoReserva.getFechaReserva(),
 				comandoReserva.getValorAPagar(),
 				comandoReserva.isEstado(),
-				comandoReserva.getIdentificacionPersona(),
+				comandoReserva.getPersona().getId(),
 				new FabricaPersona().transformar(comandoReserva.getPersona()));
 	}
 	

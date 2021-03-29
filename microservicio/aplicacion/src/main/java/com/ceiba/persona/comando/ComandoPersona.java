@@ -10,6 +10,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ComandoPersona {
-	private String identificacion;
+	private Long id;
 	private String nombre;
 }

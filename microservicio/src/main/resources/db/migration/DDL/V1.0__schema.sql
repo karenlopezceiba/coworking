@@ -4,20 +4,20 @@ CREATE TABLE sala
     PRIMARY KEY (id)
 );
 CREATE TABLE persona
-(	identificacion varchar(30),
+(	id bigint not null,
     nombre varchar(100) NOT NULL,
-    PRIMARY KEY (identificacion)
+    PRIMARY KEY (id)
 );
 CREATE TABLE reserva (
 	id serial,
-	identificacion_persona varchar(30) not null,
+	identificacion_persona bigint not null,
 	fecha_reserva date not null,
 	valor_pago bigint not null,
 	estado boolean,
 	PRIMARY KEY (id),
 	CONSTRAINT fk_persona
       FOREIGN KEY(identificacion_persona) 
-	  REFERENCES persona(identificacion)
+	  REFERENCES persona(id)
 );
 
 

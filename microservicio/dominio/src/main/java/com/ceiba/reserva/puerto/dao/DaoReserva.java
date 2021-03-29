@@ -6,6 +6,6 @@ import com.ceiba.reserva.modelo.dto.DtoReserva;
 
 public interface DaoReserva {
 	
-	List<DtoReserva> listar(String identificacionPersona);
+	List<DtoReserva> listar(Long identificacionPersona);
 
 }

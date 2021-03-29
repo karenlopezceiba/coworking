@@ -15,7 +15,7 @@ public class MapeoReserva implements RowMapper<DtoReserva>, MapperResult{
 	@Override
 	public DtoReserva mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 		Long id = resultSet.getLong("id");
-		String identificacionPersona =  resultSet.getString("identificacion_persona");
+		Long identificacionPersona =  resultSet.getLong("identificacion_persona");
 		LocalDate fechaReserva = extraerLocalDate(resultSet, "fecha_reserva");
 		boolean estado = resultSet.getBoolean("estado");
 		BigDecimal valorAPagar = resultSet.getBigDecimal("valor_pago");

@@ -1,8 +1,6 @@
 package com.ceiba.persona.adaptador.repositorio;
 
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
@@ -17,7 +15,7 @@ public class RepositorioPersonaPostgresql implements RepositorioPersona{
 	@SqlStatement(namespace="persona", value="crear")
     private static String sqlCrear;
 
-	@SqlStatement(namespace="reserva", value="existe")
+	@SqlStatement(namespace="persona", value="existe")
 	private static String sqlExiste;
 
 	 public RepositorioPersonaPostgresql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
@@ -25,17 +23,12 @@ public class RepositorioPersonaPostgresql implements RepositorioPersona{
 	}
 
 	@Override
-	public String crear(Persona persona) {
-		MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("identificacion", persona.getIdentificacion());
-        paramSource.addValue("nombre", persona.getNombre());
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-		this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlCrear,paramSource,keyHolder,new String[] { "identificacion" });
-		return keyHolder.toString();
+	public Long crear(Persona persona) {
+		return this.customNamedParameterJdbcTemplate.crear(persona, sqlCrear);
 	}
 
 	@Override
-	public boolean existe(String identificacion) {
+	public boolean existe(Long identificacion) {
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", identificacion);
 

@@ -21,12 +21,12 @@ public class Reserva {
     
 	private Long id;
 	private LocalDate fechaReserva;
-	private String identificacionPersona;
+	private Long identificacionPersona;
 	private boolean estado;
 	private BigDecimal valorAPagar;
 	private Persona persona;
 	
-	public Reserva(Long id, LocalDate fechaReserva, BigDecimal valorAPagar, boolean estado, String identificacionPersona, Persona persona) {
+	public Reserva(Long id, LocalDate fechaReserva, BigDecimal valorAPagar, boolean estado, Long identificacionPersona, Persona persona) {
 		validarObligatorio(persona, SE_DEBE_INGRESAR_INFORMACION_DE_PERSONA);
 		validarObligatorio(fechaReserva, SE_DEBE_INGRESAR_LA_FECHA_DE_RESERVA);
 		validarObligatorio(valorAPagar, SE_DEBE_INGRESAR_UN_VALOR_DE_PAGO);
@@ -39,10 +39,8 @@ public class Reserva {
 	}
 	
 	public boolean fechaValida(){
-		if(fechaReserva.getDayOfWeek().getValue() != DOMINGO){
-			if(fechaReserva.isAfter(LocalDate.now())){
+		if(fechaReserva.getDayOfWeek().getValue() != DOMINGO && fechaReserva.isAfter(LocalDate.now())){
 				return true;
-			}
 		}
 		return false;
 		
