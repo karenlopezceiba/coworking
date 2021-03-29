@@ -16,10 +16,10 @@ public class ComandoReservaTestBuilder {
 	private ComandoPersona persona;
 	
 	public ComandoReservaTestBuilder() {
-		persona = new ComandoPersona(12345L, "karen lopez");
 		fechaReserva = LocalDate.now().plusDays(2L);
 		valorAPagar = new BigDecimal("10000");
 		estado = true;
+		this.persona = new ComandoPersona(12345L, "karen lopez");
 		identificacionPersona = 12345L;
 	}
 	
@@ -30,6 +30,7 @@ public class ComandoReservaTestBuilder {
 	
 	public ComandoReservaTestBuilder conIdentificacionPersona(Long identificacionPersona) {
         this.identificacionPersona = identificacionPersona;
+        this.persona.setId(identificacionPersona);
         return this;
     }
 	
@@ -46,6 +47,12 @@ public class ComandoReservaTestBuilder {
 	public ComandoReservaTestBuilder conIsEstado(boolean estado) {
         this.estado = estado;
         return this;
+    }
+	
+	public ComandoReservaTestBuilder conPersonaNueva() {
+		this.persona = new ComandoPersona(111111L, "karen lopez");
+		identificacionPersona = 111111L;
+		return this;
     }
 	
 	public ComandoReserva build(){

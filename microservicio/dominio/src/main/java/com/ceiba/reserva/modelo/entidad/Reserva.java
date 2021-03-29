@@ -39,11 +39,7 @@ public class Reserva {
 	}
 	
 	public boolean fechaValida(){
-		if(fechaReserva.getDayOfWeek().getValue() != DOMINGO && fechaReserva.isAfter(LocalDate.now())){
-				return true;
-		}
-		return false;
-		
+		return (fechaReserva.getDayOfWeek().getValue() != DOMINGO && fechaReserva.isAfter(LocalDate.now()));
 	}
 
 	public void descuentoPorFecha() {

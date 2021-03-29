@@ -49,16 +49,30 @@ public class ComandoControladorReservaTest {
                 .andExpect(content().json("{'valor': 3}"));
     }
 	
-	 	@Test
-	    public void eliminar() throws Exception{
-	    	// arrange
-	    	Long id = 1L;
-	    	
-	    	// act - assert
-	    	mocMvc.perform(delete("/reservas/{id}",id)
-	                .contentType(MediaType.APPLICATION_JSON)
-	                .accept(MediaType.APPLICATION_JSON))
-	                .andExpect(status().isOk());
-	    }
+	@Test
+    public void crearConNuevaPersona() throws Exception{
+    	// arrange
+    	ComandoReserva reserva = unaReservaBuilder().conFecha(LocalDate.now().plusDays(1L))
+    												.conIsEstado(true).conPersonaNueva()
+    												.conValorPago(new BigDecimal("10000")).build();
+    	
+    	// act - assert
+    	mocMvc.perform(post("/reservas")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(reserva)))
+                .andExpect(status().isOk());
+    }
+	
+	 @Test
+	 public void eliminar() throws Exception{
+    	// arrange
+    	Long id = 1L;
+    	
+    	// act - assert
+    	mocMvc.perform(delete("/reservas/{id}",id)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+	  }
 	
 }

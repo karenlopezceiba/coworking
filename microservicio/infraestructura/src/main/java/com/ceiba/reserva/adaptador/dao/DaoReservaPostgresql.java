@@ -1,9 +1,7 @@
 package com.ceiba.reserva.adaptador.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
@@ -29,11 +27,7 @@ public class DaoReservaPostgresql implements DaoReserva{
 	public List<DtoReserva> listar(Long identificacionPersona) {
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
 		paramSource.addValue("idPersona", identificacionPersona);
-		try {
 		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListar, paramSource, new MapeoReserva());
-		}catch (EmptyResultDataAccessException e) {
-			return new ArrayList<>(); 
-        }
 	}
 
 }
