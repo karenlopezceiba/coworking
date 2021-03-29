@@ -12,12 +12,12 @@ public class ReservaTestDataBuilder {
 	private LocalDate fechaReserva;
 	private BigDecimal valorAPagar;
 	private boolean estado;
-	private String identificacionPersona;
+	private Long identificacionPersona;
 	private Persona persona;
 	
 	public ReservaTestDataBuilder() {
-		persona = new Persona("12345", "karen lopez");
-		identificacionPersona = "12345";
+		persona = new Persona(12345L, "karen lopez");
+		identificacionPersona = 12345L;
 		fechaReserva = LocalDate.now();
 		valorAPagar = new BigDecimal("10000");
 		estado = true;

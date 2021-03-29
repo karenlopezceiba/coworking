@@ -9,13 +9,13 @@ public interface RepositorioPersona {
      * @param persona
      * @return el id generado
      */
-    String crear(Persona persona);
+    Long crear(Persona persona);
     
     /**
      * Permite validar si existe una persona 
      * @param id
      * @return si existe o no
      */
-    boolean existe(String identificacion);
+    boolean existe(Long identificacion);
 
 }

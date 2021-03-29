@@ -26,7 +26,7 @@ public class DaoReservaPostgresql implements DaoReserva{
 
 
 	@Override
-	public List<DtoReserva> listar(String identificacionPersona) {
+	public List<DtoReserva> listar(Long identificacionPersona) {
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
 		paramSource.addValue("idPersona", identificacionPersona);
 		try {

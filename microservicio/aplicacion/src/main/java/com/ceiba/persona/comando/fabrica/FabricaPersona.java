@@ -9,6 +9,6 @@ import com.ceiba.persona.modelo.entidad.Persona;
 public class FabricaPersona {
 	
 	public Persona transformar(ComandoPersona comandoPersona){
-		return new Persona(comandoPersona.getIdentificacion(), comandoPersona.getNombre());
+		return new Persona(comandoPersona.getId(), comandoPersona.getNombre());
 	}
 }

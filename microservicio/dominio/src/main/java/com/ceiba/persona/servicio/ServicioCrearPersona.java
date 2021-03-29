@@ -13,17 +13,17 @@ public class ServicioCrearPersona {
 	
 	public boolean ejecutar(Persona persona){
 		if(!existenciaPrevia(persona)){
-		 String idPersona = repositorioPersona.crear(persona);
-		 if(idPersona == null) {
-			 return false;
-		 }
+			Long idPersona = repositorioPersona.crear(persona);
+			 if(idPersona == null) {
+				 return false;
+			 }
 		}
 		return true;
 	}
 	
 
 	private boolean existenciaPrevia(Persona persona){
-		 return this.repositorioPersona.existe(persona.getIdentificacion());		
+		 return this.repositorioPersona.existe(persona.getId());		
 	}
 	
 

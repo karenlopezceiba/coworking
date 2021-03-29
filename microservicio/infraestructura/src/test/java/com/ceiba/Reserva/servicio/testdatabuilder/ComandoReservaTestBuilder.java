@@ -9,18 +9,18 @@ import com.ceiba.reserva.comando.ComandoReserva;
 public class ComandoReservaTestBuilder {
 	
 	private Long id;
-	private String identificacionPersona;
+	private Long identificacionPersona;
 	private LocalDate fechaReserva;
 	private BigDecimal valorAPagar;
 	private boolean estado;
 	private ComandoPersona persona;
 	
 	public ComandoReservaTestBuilder() {
-		persona = new ComandoPersona("123451", "karen lopez");
-		fechaReserva = LocalDate.now();
+		persona = new ComandoPersona(12345L, "karen lopez");
+		fechaReserva = LocalDate.now().plusDays(2L);
 		valorAPagar = new BigDecimal("10000");
 		estado = true;
-		identificacionPersona = "123451";
+		identificacionPersona = 12345L;
 	}
 	
 	public ComandoReservaTestBuilder conId(Long id) {
@@ -28,7 +28,7 @@ public class ComandoReservaTestBuilder {
         return this;
     }
 	
-	public ComandoReservaTestBuilder conIdentificacionPersona(String identificacionPersona) {
+	public ComandoReservaTestBuilder conIdentificacionPersona(Long identificacionPersona) {
         this.identificacionPersona = identificacionPersona;
         return this;
     }

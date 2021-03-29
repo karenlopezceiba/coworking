@@ -13,7 +13,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class DtoReserva {
 	private Long id;
-	private String identificacionPersona;
+	private Long identificacionPersona;
 	private LocalDate fechaReserva;
 	private boolean estado;
 	private BigDecimal valorAPagar;

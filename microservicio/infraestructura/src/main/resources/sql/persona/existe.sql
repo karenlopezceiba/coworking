@@ -1,1 +1,1 @@
-select count(1) from persona where identificacion = :identificacion
+select count(1) from persona where id = :id

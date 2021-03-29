@@ -15,7 +15,7 @@ public class ServicioCrearPersonaTest {
         // arrange
         Persona persona = new PersonaTestDataBuilder().build();
         RepositorioPersona repositorioPersona = Mockito.mock(RepositorioPersona.class);
-        Mockito.when(repositorioPersona.existe(Mockito.anyString())).thenReturn(true);
+        Mockito.when(repositorioPersona.existe(Mockito.anyLong())).thenReturn(true);
         ServicioCrearPersona servicioCrearPersona = new ServicioCrearPersona(repositorioPersona);
         // act - assert
         Assert.assertTrue("Se intento crear un registro de Persona repetido", servicioCrearPersona.ejecutar(persona));
@@ -26,8 +26,8 @@ public class ServicioCrearPersonaTest {
         // arrange
         Persona persona = new PersonaTestDataBuilder().build();
         RepositorioPersona repositorioPersona = Mockito.mock(RepositorioPersona.class);
-        Mockito.when(repositorioPersona.existe(Mockito.anyString())).thenReturn(false);
-        Mockito.when(repositorioPersona.crear(Mockito.anyObject())).thenReturn("1");
+        Mockito.when(repositorioPersona.existe(Mockito.anyLong())).thenReturn(false);
+        Mockito.when(repositorioPersona.crear(Mockito.anyObject())).thenReturn(1L);
         ServicioCrearPersona servicioCrearPersona = new ServicioCrearPersona(repositorioPersona);
         // act - assert
         Assert.assertTrue("No se pudo crear la Persona", servicioCrearPersona.ejecutar(persona));

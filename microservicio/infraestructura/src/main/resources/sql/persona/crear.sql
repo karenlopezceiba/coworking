@@ -1,3 +1,3 @@
 INSERT INTO persona(
-	identificacion, nombre)
-	VALUES (:identificacion, :nombre);
+	id, nombre)
+	VALUES (:id, :nombre);

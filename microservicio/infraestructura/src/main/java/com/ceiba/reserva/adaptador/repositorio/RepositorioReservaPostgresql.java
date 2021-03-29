@@ -55,8 +55,7 @@ public class RepositorioReservaPostgresql implements RepositorioReserva{
 	@Override
 	public boolean existe(Long id) {
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("id", id);
-
+		paramSource.addValue("id", id);
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
 	}
 
