@@ -27,10 +27,8 @@ public class ManejadorCrearReserva implements ManejadorComandoRespuesta<ComandoR
 	@Override
 	public ComandoRespuesta<Long> ejecutar(ComandoReserva comandoReserva) {
 		Reserva reserva = this.fabricaReserva.crear(comandoReserva);
-		if(servicioCrearPersona.ejecutar(reserva.getPersona())){
-			return new ComandoRespuesta<>(this.servicioCrearReserva.ejecutar(reserva));
-		}
-		return new ComandoRespuesta<>(null);
+		servicioCrearPersona.ejecutar(reserva.getPersona());
+		return new ComandoRespuesta<>(this.servicioCrearReserva.ejecutar(reserva));
 	}
 	
 }

@@ -11,12 +11,10 @@ public class ServicioCrearPersona {
 		this.repositorioPersona = repositorioPersona;
 	}
 	
-	public boolean ejecutar(Persona persona){
+	public void ejecutar(Persona persona){
 		if(!existenciaPrevia(persona)){
 			repositorioPersona.crear(persona);
-			if(!existenciaPrevia(persona)) return false;
 		}
-		return true;
 	}
 	
 
