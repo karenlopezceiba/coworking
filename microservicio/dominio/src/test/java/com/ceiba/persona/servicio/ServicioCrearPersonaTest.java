@@ -22,14 +22,14 @@ public class ServicioCrearPersonaTest {
     }
 	
 	@Test
-    public void validarPersonaSinExistenciaPreviaTest() {
+    public void validarPersonaNoCreadaTest() {
         // arrange
         Persona persona = new PersonaTestDataBuilder().build();
         RepositorioPersona repositorioPersona = Mockito.mock(RepositorioPersona.class);
         Mockito.when(repositorioPersona.existe(Mockito.anyLong())).thenReturn(false);
-        Mockito.when(repositorioPersona.crear(Mockito.anyObject())).thenReturn(1L);
+        //repositorioPersona.crear(Mockito.anyObject());
         ServicioCrearPersona servicioCrearPersona = new ServicioCrearPersona(repositorioPersona);
         // act - assert
-        Assert.assertTrue("No se pudo crear la Persona", servicioCrearPersona.ejecutar(persona));
+        Assert.assertFalse(servicioCrearPersona.ejecutar(persona));
     }
 }

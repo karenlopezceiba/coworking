@@ -50,7 +50,7 @@ public class ComandoReservaTestBuilder {
     }
 	
 	public ComandoReservaTestBuilder conPersonaNueva() {
-		this.persona = new ComandoPersona(111111L, "karen lopez");
+		this.persona = new ComandoPersona(111111L, "prueba prueba");
 		identificacionPersona = 111111L;
 		return this;
     }

@@ -23,8 +23,11 @@ public class RepositorioPersonaPostgresql implements RepositorioPersona{
 	}
 
 	@Override
-	public Long crear(Persona persona) {
-		return this.customNamedParameterJdbcTemplate.crear(persona, sqlCrear);
+	public void crear(Persona persona) {
+		MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("id", persona.getId());
+        paramSource.addValue("nombre", persona.getNombre());
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlCrear, paramSource);
 	}
 
 	@Override

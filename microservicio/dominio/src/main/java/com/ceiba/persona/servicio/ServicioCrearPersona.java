@@ -13,15 +13,8 @@ public class ServicioCrearPersona {
 	
 	public boolean ejecutar(Persona persona){
 		if(!existenciaPrevia(persona)){
-			Long idPersona;
-			try {
-				idPersona = repositorioPersona.crear(persona);
-			} catch (Exception e) {
-				return false;
-			}
-			 if(idPersona == null) {
-				 return false;
-			 }
+			repositorioPersona.crear(persona);
+			if(!existenciaPrevia(persona)) return false;
 		}
 		return true;
 	}
