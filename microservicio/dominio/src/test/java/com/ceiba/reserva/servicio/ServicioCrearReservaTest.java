@@ -1,7 +1,6 @@
 package com.ceiba.reserva.servicio;
 
 import java.time.LocalDate;
-import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 import com.ceiba.BasePrueba;
@@ -38,11 +37,12 @@ public class ServicioCrearReservaTest {
         Mockito.when(repositorioReserva.concurrencia(Mockito.anyObject())).thenReturn(1L);
         Mockito.when(repositorioReserva.aforo()).thenReturn(2L);
         ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva);
+        servicioCrearReserva.ejecutar(reserva);
         // act - assert
-        Assert.assertNotNull("La reserva no ha podido ser creada", servicioCrearReserva.ejecutar(reserva));
+        Mockito.verify(repositorioReserva, Mockito.times(1)).crear(Mockito.anyObject());
     }
 	
-	@Test(expected = ExcepcionValorInvalido.class)
+	@Test
     public void validarNoHacerReservaDomingosTest() {
         // arrange
 		LocalDate fecha = LocalDate.now().plusDays(7 - LocalDate.now().getDayOfWeek().getValue()); 
@@ -51,11 +51,11 @@ public class ServicioCrearReservaTest {
         Mockito.when(repositorioReserva.existe(Mockito.anyLong())).thenReturn(false);
         ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva);
          // act - assert
-        Assert.assertNotNull("No se deben permitir reservas los Domingos", servicioCrearReserva.ejecutar(reserva));
+        BasePrueba.assertThrows(() -> servicioCrearReserva.ejecutar(reserva), ExcepcionValorInvalido.class,"Solo se permiten reservas de lunes a sabado y en fechas posteriores a la actual");
         
 	}
 	
-	@Test(expected = ExcepcionValorInvalido.class)
+	@Test
     public void validarNoHacerReservasFechasAnterioresTest() {
         // arrange
 		LocalDate fecha = LocalDate.now().minusMonths(1L); 
@@ -64,10 +64,10 @@ public class ServicioCrearReservaTest {
         Mockito.when(repositorioReserva.existe(Mockito.anyLong())).thenReturn(false);
         ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva);
         // act - assert
-        Assert.assertNotNull("No se deben permitir reservas para fechas pasadas", servicioCrearReserva.ejecutar(reserva));
+        BasePrueba.assertThrows(() -> servicioCrearReserva.ejecutar(reserva), ExcepcionValorInvalido.class,"Solo se permiten reservas de lunes a sabado y en fechas posteriores a la actual");
 	}
 	
-	@Test(expected = ExcepcionInexistencia.class)
+	@Test
     public void validarMaximaConcurrencia() {
         // arrange
 		LocalDate fecha = LocalDate.now().plusWeeks(1L);
@@ -77,7 +77,7 @@ public class ServicioCrearReservaTest {
         Mockito.when(repositorioReserva.existe(Mockito.anyLong())).thenReturn(false);
         ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva);
      // act - assert
-        Assert.assertNotNull("Concurrencia dentro del limite", servicioCrearReserva.ejecutar(reserva));
+        BasePrueba.assertThrows(() -> servicioCrearReserva.ejecutar(reserva), ExcepcionInexistencia.class,"No exiten puestos disponibles para reservar");
 	}
 	
 	@Test
@@ -91,8 +91,9 @@ public class ServicioCrearReservaTest {
         Mockito.when(repositorioReserva.aforo()).thenReturn(2L);
         Mockito.when(repositorioReserva.crear(Mockito.anyObject())).thenReturn(1L);
         ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva);
+        servicioCrearReserva.ejecutar(reserva);
         //act - assert
-        Assert.assertNotNull("Concurrencia mas alla del limite", servicioCrearReserva.ejecutar(reserva));
+        Mockito.verify(repositorioReserva, Mockito.times(1)).crear(Mockito.anyObject());
 	}
 	
 }

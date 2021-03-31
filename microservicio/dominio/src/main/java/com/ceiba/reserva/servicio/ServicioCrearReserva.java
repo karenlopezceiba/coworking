@@ -9,7 +9,7 @@ import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 public class ServicioCrearReserva {
 	private static final String LA_RESERVA_YA_EXISTE_EN_EL_SISTEMA = "La reserva ya existe en el sistema";
 	private static final String NO_HAY_PUESTOS_DISPONIBLES = "No exiten puestos disponibles para reservar";
-	private static final String LA_FECHA_DEBE_SER_VALIDA = "Solo se permiten reservas de lunes a sabado";
+	private static final String LA_FECHA_DEBE_SER_VALIDA = "Solo se permiten reservas de lunes a sabado y en fechas posteriores a la actual";
 
 
     private final RepositorioReserva repositorioReserva;

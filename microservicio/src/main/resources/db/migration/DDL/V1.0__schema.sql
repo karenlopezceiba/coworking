@@ -23,5 +23,5 @@ CREATE TABLE reserva (
 
 INSERT INTO sala(
 	id, total_puestos)
-	VALUES (1, 12), (2, 6);
+	VALUES (1, 12), (2, 9000);
 	

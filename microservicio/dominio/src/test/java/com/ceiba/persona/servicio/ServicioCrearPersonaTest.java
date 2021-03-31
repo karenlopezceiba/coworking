@@ -1,9 +1,7 @@
 package com.ceiba.persona.servicio;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
-
 import com.ceiba.persona.modelo.entidad.Persona;
 import com.ceiba.persona.puerto.repositorio.RepositorioPersona;
 import com.ceiba.persona.servicio.testdatabuilder.PersonaTestDataBuilder;
@@ -19,7 +17,7 @@ public class ServicioCrearPersonaTest {
         ServicioCrearPersona servicioCrearPersona = new ServicioCrearPersona(repositorioPersona);
         servicioCrearPersona.ejecutar(persona);
         // act - assert
-        Assert.assertTrue(true);
+        Mockito.verify(repositorioPersona, Mockito.times(0)).crear(Mockito.anyObject());
     }
 	
 	@Test
@@ -31,6 +29,6 @@ public class ServicioCrearPersonaTest {
         ServicioCrearPersona servicioCrearPersona = new ServicioCrearPersona(repositorioPersona);
         servicioCrearPersona.ejecutar(persona);
         // act - assert
-        Assert.assertTrue(true);
+        Mockito.verify(repositorioPersona, Mockito.times(1)).crear(Mockito.anyObject());
     }
 }
